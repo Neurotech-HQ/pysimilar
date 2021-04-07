@@ -3,6 +3,7 @@ A python library for computing the similarity between two string(text) based on 
 
 <a href="https://www.buymeacoffee.com/kalebuj" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
+
 How does it work ?
 ------------------
 
@@ -26,6 +27,25 @@ Installation with pip
 $ pip install pysimilar
 ```
 
+Example of usage
+----------------
+Pysimilar allows you to either specify the string you want to compare directly or specify path to files containing string you want to compare.
+
+Here an example on how to compare strings directly;
+
+```python
+>>> from pysimilar import compare
+>>> compare('very light indeed', 'how fast is light')
+0.17077611319011649
+```
+
+Here how to compare files with textual documents;
+
+```python
+>>> compare('README.md', 'LICENSE', isfile=True)
+0.25545580376557886
+```
+
 Contributions
 -------------
 If you have anything valuable to add to the *lib*, whether its a documentation, typo error, source code, please don't hesitate to contribute just fork it and submit your pull request and I will try to be as friendly as I can to assist you making the contributions.
@@ -39,4 +59,3 @@ All the Credits
 ---------------
 
 All the Credits to [kalebu](https://github.com/Kalebu) and other future contributors 
-
