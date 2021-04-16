@@ -6,8 +6,7 @@
 
 A python library for computing the similarity between two string(text) based on cosine similarity made by [kalebu](https://github.com/Kalebu)
 
-<a href="https://www.buymeacoffee.com/kalebuj" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
-
+[![Become a patron](pictures/become_a_patron_button.png)](https://www.patreon.com/kalebujordan)
 
 How does it work ?
 ------------------
