@@ -50,6 +50,56 @@ Here how to compare files with textual documents;
 0.25545580376557886
 ```
 
+You can also compare documents with particular **extension** in a given directory, for instance let's say I want to compare all the documents with **.txt** in a **documents** directory here is what I will do;
+
+Directory for documents used by the example below look like this
+
+```bash
+documents/
+├── anomalie.zeta
+├── hello.txt
+├── hi.txt
+└── welcome.txt
+```
+
+Here how to compare files of a particular extension
+
+```python
+>>> import pysimilar
+>>> from pprint import pprint
+>>> pysimilar.extensions = '.txt'
+>>> comparison_result = pysimilar.compare_documents('documents')
+>>> [['welcome.txt vs hi.txt', 0.6053485081062917],
+    ['welcome.txt vs hello.txt', 0.0],
+    ['hi.txt vs hello.txt', 0.0]]
+```
+
+You can also sort the comparison score based on their score by changing the **ascending** parameter, just as shown below;
+
+```python
+>>> comparison_result = pysimilar.compare_documents('documents', ascending=True)
+>>> pprint(comparison_result)
+[['welcome.txt vs hello.txt', 0.0],
+ ['hi.txt vs hello.txt', 0.0],
+ ['welcome.txt vs hi.txt', 0.6053485081062917]]
+```
+
+You can also set pysimilar to include files with multiple extensions
+
+```python
+>>> import pysimilar
+>>> from pprint import pprint
+>>> pysimilar.extensions = ['.txt', '.zeta']
+>>> comparison_result = pysimilar.compare_documents('documents', ascending=True)
+>>> pprint(comparison_result)
+[['welcome.txt vs hello.txt', 0.0],
+ ['hi.txt vs hello.txt', 0.0],
+ ['anomalie.zeta vs hi.txt', 0.4968161174826459],
+ ['welcome.txt vs hi.txt', 0.6292275146695526],
+ ['welcome.txt vs anomalie.zeta', 0.7895651507603823]]
+
+```
+
 Contributions
 -------------
 If you have anything valuable to add to the *lib*, whether its a documentation, typo error, source code, please don't hesitate to contribute just fork it and submit your pull request and I will try to be as friendly as I can to assist you making the contributions.
