@@ -1,37 +1,117 @@
-## Welcome to GitHub Pages
+# [pysimilar](https://pypi.org/project/pysimilar)
 
-You can use the [editor on GitHub](https://github.com/Kalebu/pysimilar/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+A python library for computing the similarity between two string(text) based on cosine similarity made by [kalebu](https://github.com/Kalebu)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+[![Become a patron](pictures/become_a_patron_button.png)](https://www.patreon.com/kalebujordan)
 
-### Markdown
+## How does it work ?
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+It uses Tfidf Vectorizer to transform the text into vectors and then obtained vectors are converted into arrays of numbers and then finally cosine similary computation is employed resulting to output indicating how similar they are.
 
-```markdown
-Syntax highlighted code block
+## Installation
 
-# Header 1
-## Header 2
-### Header 3
+You can either install it directly from *Github* or use *pip* to install it, just as shown below;
 
-- Bulleted
-- List
+### Installation with pip
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```python
+pip install pysimilar
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Installation directly from github
 
-### Jekyll Themes
+```bash
+git clone https://github.com/Kalebu/pysimilar
+cd pysimilar
+pysimilar -> python setup.py install
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Kalebu/pysimilar/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Example of usage
 
-### Support or Contact
+Pysimilar allows you to either specify the string you want to compare directly or specify path to files containing string you want to compare.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### compare() strings
+
+Here an example on how to compare strings directly;
+
+```python
+>>> from pysimilar import compare
+>>> compare('very light indeed', 'how fast is light')
+0.17077611319011649
+```
+
+### compare () files
+
+Here how to compare files with textual documents;
+
+```python
+>>> compare('README.md', 'LICENSE', isfile=True)
+0.25545580376557886
+```
+
+You can also compare documents with particular **extension** in a given directory, for instance let's say I want to compare all the documents with **.txt** in a **documents** directory here is what I will do;
+
+Directory for documents used by the example below look like this
+
+```bash
+documents/
+├── anomalie.zeta
+├── hello.txt
+├── hi.txt
+└── welcome.txt
+```
+
+### compare_documents ()
+
+Here how to compare files of a particular extension
+
+```python
+>>> import pysimilar
+>>> from pprint import pprint
+>>> pysimilar.extensions = '.txt'
+>>> comparison_result = pysimilar.compare_documents('documents')
+>>> [['welcome.txt vs hi.txt', 0.6053485081062917],
+    ['welcome.txt vs hello.txt', 0.0],
+    ['hi.txt vs hello.txt', 0.0]]
+```
+
+### sorting the outputs
+
+You can also sort the comparison score based on their score by changing the **ascending** parameter, just as shown below;
+
+```python
+>>> comparison_result = pysimilar.compare_documents('documents', ascending=True)
+>>> pprint(comparison_result)
+[['welcome.txt vs hello.txt', 0.0],
+ ['hi.txt vs hello.txt', 0.0],
+ ['welcome.txt vs hi.txt', 0.6053485081062917]]
+```
+
+## multiple extensions
+
+You can also set pysimilar to include files with multiple extensions
+
+```python
+>>> import pysimilar
+>>> from pprint import pprint
+>>> pysimilar.extensions = ['.txt', '.zeta']
+>>> comparison_result = pysimilar.compare_documents('documents', ascending=True)
+>>> pprint(comparison_result)
+[['welcome.txt vs hello.txt', 0.0],
+ ['hi.txt vs hello.txt', 0.0],
+ ['anomalie.zeta vs hi.txt', 0.4968161174826459],
+ ['welcome.txt vs hi.txt', 0.6292275146695526],
+ ['welcome.txt vs anomalie.zeta', 0.7895651507603823]]
+
+```
+
+## Contributions
+
+If you have anything valuable to add to the *lib*, whether its a documentation, typo error, source code, please don't hesitate to contribute just fork it and submit your pull request and I will try to be as friendly as I can to assist you making the contributions.
+
+
+## All the Credits
+
+All the Credits to [kalebu](https://github.com/Kalebu) and other future contributors
+
+Back to [Home](https://kalebu.github.io)
