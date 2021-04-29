@@ -2,10 +2,10 @@ from distutils.core import setup
 
 setup(
     name="pysimilar",
-    version="0.1",
+    version="0.2",
     description='A very light python libary for comparing similarity between text/strings',
     url='https://github.com/Kalebu/pysimilar',
-    download_url="https://github.com/Kalebu/pysimilar/archive/0.1.tar.gz",
+    download_url="https://github.com/Kalebu/pysimilar/archive/0.2.tar.gz",
     author="Jordan Kalebu",
     author_email="isaackeinstein@gmail.com",
     license="MIT",
