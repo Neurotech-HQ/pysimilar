@@ -62,7 +62,7 @@ class Pysimilar(object):
 
     @staticmethod
     def load_file(path_to_file: Union[Path, str]):
-        with open(path_to_file, 'r') as document:
+        with open(path_to_file, 'r', encoding='latin-1') as document:
             content = document.read()
         return content
 
