@@ -9,7 +9,7 @@ with open(path.join(this_directory, "description.md"), encoding="utf-8") as f:
 
 setup(
     name="pysimilar",
-    version="0.3",
+    version="0.5",
     description="A very light python libary for comparing similarity between text/strings",
     long_description=long_description,
     long_description_content_type="text/markdown",
