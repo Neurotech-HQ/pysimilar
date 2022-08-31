@@ -1,3 +1,5 @@
+<samp>
+
 # [pysimilar](https://pypi.org/project/pysimilar)
 
 [![Downloads](https://pepy.tech/badge/pysimilar)](https://pepy.tech/project/pysimilar)
@@ -113,3 +115,4 @@ All the Credits
 ---------------
 
 All the Credits to [kalebu](https://github.com/Kalebu) and other future contributors 
+</samp>
