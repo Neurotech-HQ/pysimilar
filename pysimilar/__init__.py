@@ -111,29 +111,27 @@ class Pysimilar(object):
             list: [description]
         """
         if not os.path.exists(path_to_documents):
-            raise FileNotFoundError(
-                f'Path <{path_to_documents}> Does not exist')
+            raise FileNotFoundError(f'Path <{path_to_documents}> Does not exist')
 
         loaded_documents: Dict = self.load_files(path_to_documents)
         vectorized_documents = self.vectorize_dict(loaded_documents)
         compared_documents: List[set] = []
         comparison_results: List[list] = []
-        for current_document_name, current_content in vectorized_documents.items():
-            for document_name, content in vectorized_documents.items():
+        document_names = list(vectorized_documents.keys())
+        for i, current_document_name in enumerate(document_names):
+            for document_name in document_names[i + 1:]:
                 current_comparison = f'{current_document_name} vs {document_name}'
-                if (current_document_name == document_name) or (set(current_comparison) in compared_documents):
-                    continue
-                result = self.compute_similarity(current_content, content)
+                result = self.compute_similarity(vectorized_documents[current_document_name],
+                                                 vectorized_documents[document_name])
                 displayable_result = [current_comparison, result]
                 comparison_results.append(displayable_result)
-                # print(displayable_result)
                 compared_documents.append(set(current_comparison))
 
         if not sort:
             return comparison_results
 
-        sorted_results = sorted(
-            comparison_results, key=lambda x: x[1], reverse=not ascending)
+        sorted_results = sorted(comparison_results, key=lambda x: x[1], reverse=not ascending)
+
         return sorted_results
 
     def compute_similarity(self, vector_a: list, vector_b: list) -> float:
